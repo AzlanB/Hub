@@ -1,7 +1,12 @@
 @import "tailwindcss";
 
 header {
-    background-color: #8850ab;
+    background-color: #85929e;
+}
+
+body {
+    background-color: #eaeded;
+    font-family: "Times New Roman", Times, serif;
 }
 
 h1 {
@@ -9,17 +14,13 @@ h1 {
 }
 
 h2 {
-    font-size: 200%
+    font-size: 215%
 }
 
 h3 {
-    font-size: 170%
-}
-
-h4 {
-    font-size: 120%
+    font-size: 175%
 }
 
 p {
-    font-size: 115%
+    font-size: 130%
 }
