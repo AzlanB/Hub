@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+header {
+    background-color: #8850ab;
+}
+
+h1 {
+    font-size: 300%
+}
+
+h2 {
+    font-size: 200%
+}
+
+h3 {
+    font-size: 170%
+}
+
+h4 {
+    font-size: 120%
+}
+
+p {
+    font-size: 115%
+}
