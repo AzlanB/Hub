@@ -1,0 +1,40 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Erlang/OTP
+        uses: erlef/setup-beam@v1
+        with:
+          otp-version: '27'
+          gleam-version: '1.17.0'
+          rebar3-version: '3.27.0'
+
+      - name: Download Gleam dependencies
+        run: gleam deps download
+
+      - name: Build Lustre SPA
+        run: |
+          gleam run -m lustre/dev build --minify
+          sed -i 's|src="/|src="https://kselkie.github.io/Roir/|g' dist/index.html
+          sed -i 's|href="/|href="https://kselkie.github.io/Roir/|g' dist/index.html
+          sed -i 's|url(/fonts/|url(https://kselkie.github.io/Roir/fonts/|g' dist/roir.css
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist
+          branch: gh-pages
+          clean: true
