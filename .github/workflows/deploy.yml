@@ -28,9 +28,9 @@ jobs:
       - name: Build Lustre SPA
         run: |
           gleam run -m lustre/dev build --minify
-          sed -i 's|src="/|src="https://kselkie.github.io/Roir/|g' dist/index.html
-          sed -i 's|href="/|href="https://kselkie.github.io/Roir/|g' dist/index.html
-          sed -i 's|url(/fonts/|url(https://kselkie.github.io/Roir/fonts/|g' dist/roir.css
+          sed -i 's|src="/|src="https://azlanb.github.io/Hub/|g' dist/index.html
+          sed -i 's|href="/|href="https://azlanb.github.io/Hub/|g' dist/index.html
+          sed -i 's|url(/fonts/|url(https://azlanb.github.io/Hub/fonts/|g' dist/hub.css
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
