@@ -17,6 +17,7 @@ type Model { Model(
 
 type Page {
   Home
+  Projects
 }
 
 fn init(_flags) -> #(Model, effect.Effect(Message)) {
@@ -25,11 +26,13 @@ fn init(_flags) -> #(Model, effect.Effect(Message)) {
 
 type Message {
   UserClickedHome
+  UserClickedProjects
 }
 
 fn update(model: Model, message: Message) -> #(Model, effect.Effect(Message)) {
   case message {
-    _ -> #(model, effect.none())
+    UserClickedHome -> #(Model(Home), effect.none())
+    UserClickedProjects -> #(Model(Projects), effect.none())
   }
 }
 
@@ -42,9 +45,14 @@ fn view(model: Model) -> Element(Message) {
           [h.text("Selkie Bokhari")]),
         h.button([event.on_click(UserClickedHome), a.style("margin-right", "35px")],
           [h.h2([case model.page {
-              Home -> a.style("color", "#3c3551")
-              _ -> a.none()
+            Home -> a.style("color", "#3c3551")
+            _ -> a.none()
           }], [h.text("Home")])]),
+        h.button([event.on_click(UserClickedProjects), a.style("margin-right", "35px")],
+          [h.h2([case model.page {
+            Projects -> a.style("color", "#3c3551")
+            _ -> a.none()
+        }], [h.text("Projects")])]),
         h.a([a.href("https://github.com/AzlanB"), a.styles([#("margin-right", "35px"), #("display", "inline-grid")])],
           [h.h2([], [h.text("GitHub")])]),
         h.a([a.href("https://drive.google.com/file/d/1S06Om_5iJ1cwy4inC6YkUXRi-sXQJ8Ay/view?usp=sharing"), a.styles([#("margin-right", "35px"), #("display", "inline-grid")])],
@@ -53,8 +61,13 @@ fn view(model: Model) -> Element(Message) {
 
       case model.page {
         Home -> h.div([a.style("margin-left", "5px")], [
-          h.h2([], [h.text("Placeholder Text")]),
-          h.p([], [h.text("Test")])
+          h.h2([], [h.text("About Me")]),
+          h.p([], [h.text("Unfinished")])
+        ])
+
+        Projects -> h.div([a.style("margin-left", "5px")], [
+          h.h2([], [h.text("Projects")]),
+          h.p([], [h.text("Unfinished")])
         ])
       }
     ])
