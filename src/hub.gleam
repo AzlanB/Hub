@@ -41,11 +41,14 @@ fn view(model: Model) -> Element(Message) {
         h.h1([a.styles([#("display", "inline-grid"), #("margin-right", "50px")])],
           [h.text("Selkie Bokhari")]),
         h.button([event.on_click(UserClickedHome), a.style("margin-right", "35px")],
-          [h.h2([], [h.text("Home")])]),
+          [h.h2([case model.page {
+              Home -> a.style("color", "#3c3551")
+              _ -> a.none()
+          }], [h.text("Home")])]),
         h.a([a.href("https://github.com/AzlanB"), a.styles([#("margin-right", "35px"), #("display", "inline-grid")])],
           [h.h2([], [h.text("GitHub")])]),
-        h.a([a.href("https://kselkie.github.io/Roir"), a.styles([#("margin-right", "35px"), #("display", "inline-grid")])],
-          [h.h2([], [h.text("Roir Resources")])])
+        h.a([a.href("https://drive.google.com/file/d/1S06Om_5iJ1cwy4inC6YkUXRi-sXQJ8Ay/view?usp=sharing"), a.styles([#("margin-right", "35px"), #("display", "inline-grid")])],
+          [h.h2([], [h.text("Resume")])])
       ])]),
 
       case model.page {
